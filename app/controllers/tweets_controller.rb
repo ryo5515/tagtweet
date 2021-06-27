@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
   def new
     @tweet = TweetsTag.new
   end
-  
+
   def create
     @tweet = TweetsTag.new(tweet_params)
     if @tweet.valid?
@@ -15,6 +15,12 @@ class TweetsController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def search
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag }
   end
 
   private
