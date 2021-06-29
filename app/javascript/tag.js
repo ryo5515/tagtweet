@@ -5,6 +5,7 @@ if (location.pathname.match("tweets/new")){
       const keyword = document.getElementById("tweets_tag_name").value;
       const XHR = new XMLHttpRequest();
       XHR.open("GET", `search/?keyword=${keyword}`, true);
+      XHR.responseType = "json";
     })
   });
 };
